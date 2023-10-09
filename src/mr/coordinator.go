@@ -8,9 +8,15 @@ import (
 	"os"
 )
 
+// Master节点的结构状态
 type Coordinator struct {
 	// Your definitions here.
-
+	State       int        //状态信息
+	MapChan     chan *Task //Map任务的信道
+	ReduceChan  chan *Task //Reduce任务的信道
+	MapTasks    []*Task    //Map任务队列
+	ReduceTasks []*Task    //Reduce任务队列
+	RemainTasks int        //剩余任务数量
 }
 
 // Your code here -- RPC handlers for the worker to call.
@@ -40,7 +46,7 @@ func (c *Coordinator) server() {
 // main/mrcoordinator.go calls Done() periodically to find out
 // if the entire job has finished.
 func (c *Coordinator) Done() bool {
-	ret := true
+	ret := (c.State == Waiting)
 
 	// Your code here.
 
