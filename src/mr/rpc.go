@@ -28,6 +28,7 @@ type ExampleReply struct {
 
 type Information struct {
 	X int
+	Y int
 }
 
 // Cook up a unique-ish UNIX-domain socket name
