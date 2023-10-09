@@ -9,6 +9,8 @@ package mr
 import (
 	"os"
 	"strconv"
+	"sync"
+	"time"
 )
 
 //
@@ -25,11 +27,21 @@ type ExampleReply struct {
 }
 
 // Add your RPC definitions here.
-
-type Information struct {
-	X int
-	Y int
+// 设计实现一个RPC传输的结构
+type Task struct {
+	TaskType int       //服务器状态信息，对应map\reduce\wait
+	TaskID   int       //任务ID
+	Filename string    //传输文件名
+	NReduce  int       //能卸载的服务器数量？
+	Finished bool      //是否完成
+	Start    time.Time //开始时间
 }
+
+const Map = 1
+const Reduce = 2
+const Waiting = 3
+
+var mutex sync.Mutex
 
 // Cook up a unique-ish UNIX-domain socket name
 // in /var/tmp, for the coordinator.

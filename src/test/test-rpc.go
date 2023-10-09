@@ -33,6 +33,7 @@ func main() {
 			log.Fatal("Accept error:", err)
 			continue
 		}
+		//建立链接
 		go rpc.ServeConn(conn)
 	}
 }
