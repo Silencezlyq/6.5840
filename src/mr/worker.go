@@ -114,7 +114,7 @@ func DoReduce(reducef func(string, []string) string, task *Task) {
 	i := 0
 	intermediate := []KeyValue{}
 	for i < task.NReduce {
-		filepath := task.Filename + strconv.Itoa(i) + "-" + strconv.Itoa(task.TaskId)
+		filepath := task.Filename + strconv.Itoa(i) + "-" + strconv.Itoa(task.TaskID)
 		file, _ := os.Open(filepath)
 		dec := json.NewDecoder(file)
 		for {
