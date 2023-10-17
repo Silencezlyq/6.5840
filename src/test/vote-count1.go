@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func main2() {
+func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	count := 0
