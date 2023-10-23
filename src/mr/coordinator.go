@@ -141,6 +141,7 @@ func (c *Coordinator) CreateReduce(Nreduce int) {
 }
 
 // start a thread that listens for RPCs from worker.go
+//socket unix是用本地套接字通信的
 func (c *Coordinator) server() {
 	rpc.Register(c)
 	rpc.HandleHTTP()
